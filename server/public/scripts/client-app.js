@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     // respond to submit event on form
     $('#song-form').on('submit', function() {
-        event.preventDefault();
+        // event.preventDefault(); // doesn't work in Mozilla
 
         var song = {}; // we will store our song here
 

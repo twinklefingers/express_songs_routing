@@ -5,6 +5,8 @@ var path = require('path');
 
 var checkSongs = require('./public/routes/checkSongs');
 
+songs = []; //stores our songs - global variable, available to all routes
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -12,10 +14,7 @@ app.use(bodyParser.urlencoded({
 app.set('port', process.env.PORT || 3000);
 
 app.use('/songs', checkSongs);
-// app.post("/songs", function(req, res) {
-//     var song = req.body;
-//     console.log("This is SONG!" + song);
-// });
+
 /**
  * POST /songs
  *
@@ -24,16 +23,8 @@ app.use('/songs', checkSongs);
 
 app.get('/*', function(req, res) {
     var file = req.params[0] || '/views/index.html';
-
-    // console.log('What is in req.params[0]?', req.params[0]);
-
-    //console.log('dirname: ', __dirname);
-    //console.log('path', path.join(__dirname, '../public', file));
     res.sendFile(path.join(__dirname, './public', file));
 });
-
-
-
 
 
 app.listen(app.get('port'), function() {
